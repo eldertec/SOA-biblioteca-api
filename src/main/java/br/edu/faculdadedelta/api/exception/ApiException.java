@@ -37,7 +37,7 @@ public class ApiException extends ResponseEntityExceptionHandler {
 	@ExceptionHandler({ DataIntegrityViolationException.class })
 	public ResponseEntity<Object> handlerDataIntegrityViolationException(DataIntegrityViolationException ex,
 			WebRequest request) {
-		String mensagemUsuario = "Recurso não encontrado - Gênero Inválido";
+		String mensagemUsuario = "Erro ao realizar a operação";
 		String mensagemDesenvolvedor = ex.toString();
 		List<ErroDetalhe> erros = Arrays.asList(new ErroDetalhe(mensagemUsuario, mensagemDesenvolvedor));
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);

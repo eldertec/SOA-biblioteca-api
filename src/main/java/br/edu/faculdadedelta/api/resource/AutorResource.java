@@ -20,41 +20,41 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.edu.faculdadedelta.api.model.Livro;
-import br.edu.faculdadedelta.api.service.LivroService;
+import br.edu.faculdadedelta.api.model.Autor;
+import br.edu.faculdadedelta.api.service.AutorService;
 
 @RestController
-@RequestMapping(value = "/livros")
-public class LivroResource {
+@RequestMapping(value = "/autores")
+public class AutorResource {
 
 	@Autowired
-	private LivroService service;
+	private AutorService service;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Livro inserir(@RequestBody @Valid Livro livro, HttpServletResponse response) {
-		Livro retorno = service.inserir(livro);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(livro.getId()).toUri();
+	public Autor inserir(@RequestBody @Valid Autor autor, HttpServletResponse response) {
+		Autor retorno = service.inserir(autor);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autor.getId()).toUri();
 		response.setHeader(HttpHeaders.LOCATION, uri.toString());
 		return retorno;
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Livro> listar() {
+	public List<Autor> listar() {
 		return service.listar();
 	}
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Livro pesquisarPorId(@PathVariable("id") Long id) {
+	public Autor pesquisarPorId(@PathVariable("id") Long id) {
 		return service.pesquisarPorId(id);
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Livro alterar(@RequestBody @Valid Livro livro, @PathVariable("id") Long id) {
-		return service.alterar(livro, id);
+	public Autor alterar(@RequestBody @Valid Autor autor, @PathVariable("id") Long id) {
+		return service.alterar(autor, id);
 	}
 
 	@DeleteMapping("/{id}")

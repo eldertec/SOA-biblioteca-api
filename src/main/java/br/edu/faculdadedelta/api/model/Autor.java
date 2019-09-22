@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import br.edu.faculdadedelta.api.model.enuns.Sexo;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,6 @@ public class Autor {
 	private String nome;
 
 	@Enumerated(EnumType.STRING)
+	@NotNull(message = "O sexo é obrigatório!")
 	private Sexo sexo;
 }

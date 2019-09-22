@@ -34,8 +34,13 @@ public class Emprestimo {
 	@NotNull(message = "O valor é obrigatório!")
 	private BigDecimal valorEmprestimo;
 
-	@NotNull(message = "O livro é obrigatório!")
 	@ManyToOne
 	@JoinColumn(name = "id_livro")
+	@NotNull(message = "O livro é obrigatório!")
 	private Livro livro;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	@NotNull(message = "O cliente é obrigatório!")
+	private Cliente cliente;
 }

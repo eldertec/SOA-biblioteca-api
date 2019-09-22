@@ -43,4 +43,14 @@ public class Livro {
 	@JoinColumn(name = "id_genero")
 	private Genero genero;
 
+	@NotNull(message = "A editora é obrigatória!")
+	@ManyToOne
+	@JoinColumn(name = "id_editora")
+	private Editora editora;
+
+	@NotNull(message = "O autor é obrigatório!")
+	@ManyToOne
+	@JoinColumn(name = "id_autor")
+	private Autor autor;
+
 }

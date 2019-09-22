@@ -20,41 +20,41 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.edu.faculdadedelta.api.model.Livro;
-import br.edu.faculdadedelta.api.service.LivroService;
+import br.edu.faculdadedelta.api.model.Emprestimo;
+import br.edu.faculdadedelta.api.service.EmprestimoService;
 
 @RestController
-@RequestMapping(value = "/livros")
-public class LivroResource {
+@RequestMapping(value = "/emprestimos")
+public class EmprestimoResource {
 
 	@Autowired
-	private LivroService service;
+	private EmprestimoService service;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Livro inserir(@RequestBody @Valid Livro livro, HttpServletResponse response) {
-		Livro retorno = service.inserir(livro);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(livro.getId()).toUri();
+	public Emprestimo inserir(@RequestBody @Valid Emprestimo emprestimo, HttpServletResponse response) {
+		Emprestimo retorno = service.inserir(emprestimo);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(emprestimo.getId()).toUri();
 		response.setHeader(HttpHeaders.LOCATION, uri.toString());
 		return retorno;
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Livro> listar() {
+	public List<Emprestimo> listar() {
 		return service.listar();
 	}
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Livro pesquisarPorId(@PathVariable("id") Long id) {
+	public Emprestimo pesquisarPorId(@PathVariable("id") Long id) {
 		return service.pesquisarPorId(id);
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Livro alterar(@RequestBody @Valid Livro livro, @PathVariable("id") Long id) {
-		return service.alterar(livro, id);
+	public Emprestimo alterar(@RequestBody @Valid Emprestimo emprestimo, @PathVariable("id") Long id) {
+		return service.alterar(emprestimo, id);
 	}
 
 	@DeleteMapping("/{id}")
